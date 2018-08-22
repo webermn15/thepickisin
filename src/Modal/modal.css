@@ -1,0 +1,60 @@
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	background-color: rgba(255, 255, 255, 0.7);
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.modal-window {
+	width: 80%;
+	height: 80%;
+	margin: 0 auto;
+	background-color: white;
+	border: 1px solid black;
+}
+
+/* player specific modal */
+.player-modal {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.player-name {
+	font-size: 6em;
+}
+.team-and-position-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	font-size: 3em;
+}
+.modal-button-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 60%;
+	height: 10%;
+	margin: 0 auto;
+}
+.modal-button {
+	height: 100%;
+	width: 25%;
+	font-size: 1.5em;
+	transition: box-shadow 0.2s ease;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.modal-button:hover {
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+	cursor: pointer;
+}
