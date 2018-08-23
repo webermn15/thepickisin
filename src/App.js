@@ -2,91 +2,8 @@ import React, { Component } from 'react';
 import PositionColumn from './PositionColumn';
 import Modal from './Modal';
 import PlayerModal from './PlayerModal.js';
-import PickModal from './PickModal.js';
+// import PickModal from './PickModal.js';
 import './style.css';
-
-const fakeDB = {
-  QB: [
-    {
-      id: 1,
-      name: 'Aaron Rodgers',
-      team: 'GB',
-      position: 'QB',
-      available: true
-    },
-    {
-      id: 2,
-      name: 'Tom Brady',
-      team: 'NE',
-      position: 'QB',
-      available: true
-    },
-    {
-      id: 3,
-      name: 'Tyrod Taylor',
-      team: 'CLE',
-      position: 'QB',
-      available: true
-    },
-    {
-      id: 4,
-      name: 'Russell Wilson',
-      team: 'SEA',
-      position: 'QB',
-      available: true
-    }
-  ],
-  WR: [
-    {
-      id: 1,
-      name: 'Dez Bryant',
-      team: 'DAL',
-      position: 'WR',
-      available: true
-    },
-    {
-      id: 2,
-      name: 'Davante Adams',
-      team: 'GB',
-      position: 'WR',
-      available: true
-    },
-    {
-      id: 3,
-      name: 'Julio Jones',
-      team: 'ATL',
-      position: 'WR',
-      available: true
-    },
-    {
-      id: 4,
-      name: 'A.J. Green',
-      team: 'CIN',
-      position: 'WR',
-      available: true
-    }
-  ],
-  RB: [
-    {
-      id: 1,
-      name: 'Walter Peyton',
-      team: 'CHI',
-      position: 'RB',
-      available: true
-    },
-    {
-      id: 2,
-      name: 'Barry Sanders',
-      team: 'DET',
-      position: 'RB',
-      available: true
-    }
-  ]
-}
-
-// const formatPropAsKey = (key, value) => {
-//   return {[key]: value}
-// }
 
 class App extends Component {
   constructor() {
@@ -102,8 +19,25 @@ class App extends Component {
         team: 'GB',
         available: false
       },
-      ...fakeDB
+      QB: [],
+      RB: [],
+      WR: [],
+      TE: [],
+      PK: [],
+      DEF: []
     }
+  }
+
+  componentDidMount() {
+    this.initTPII()
+      .then(({sorted}) => this.setState({...sorted}, () => this.setState({refresh: !this.state.refresh})))
+      .catch(err => console.log(err));
+  }
+
+  initTPII = async () => {
+    const response = await fetch('http://localhost:4000/init');
+    const body = await response.json();
+    return body;
   }
 
   playSelection = (name) => {
@@ -165,7 +99,7 @@ class App extends Component {
             <PositionColumn refresh={this.state.refresh} toggle={this.selectPlayer} position="Wide Receivers" players={this.state.WR} />
             <PositionColumn refresh={this.state.refresh} toggle={this.selectPlayer} position="Running Backs" players={this.state.RB} />
             <PositionColumn refresh={this.state.refresh} toggle={this.selectPlayer} position="Tight Ends" players={this.state.TE} />
-            <PositionColumn refresh={this.state.refresh} toggle={this.selectPlayer} position="Kickers" players={this.state.K} />
+            <PositionColumn refresh={this.state.refresh} toggle={this.selectPlayer} position="Kickers" players={this.state.PK} />
             <PositionColumn refresh={this.state.refresh} toggle={this.selectPlayer} position="Defense" players={this.state.DEF} />
           </div>
         </div>

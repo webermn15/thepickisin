@@ -3,6 +3,7 @@ import './Modal/modal.css';
 
 const PlayerModal = ({name, position, team, available, toggle, pick, undo}) => {
 	const selectionText = available ? 'Select Player' : 'Make Available';
+	const imgURL = 'http://mnweber.me/tpii/assets/'+ team +'.gif'
 
 	return(
 		<div className="player-modal">
@@ -13,6 +14,9 @@ const PlayerModal = ({name, position, team, available, toggle, pick, undo}) => {
 				<div className="team-and-position-container">
 					{position} on {team}
 				</div>
+			</div>
+			<div>
+				<img src={imgURL} />
 			</div>
 			<div className="modal-button-container">
 				<div className="modal-button" onClick={() => {available ? pick() : undo()}}><span>{selectionText}</span></div>
