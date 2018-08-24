@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   initTPII = async () => {
-    const response = await fetch('http://localhost:4000/init');
+    const response = await fetch('https://tpii-api.herokuapp.com/init');
     const body = await response.json();
     return body;
   }

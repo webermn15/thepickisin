@@ -16,7 +16,7 @@ const PlayerModal = ({name, position, team, available, toggle, pick, undo}) => {
 				</div>
 			</div>
 			<div>
-				<img src={imgURL} />
+				<img alt={team} src={imgURL} />
 			</div>
 			<div className="modal-button-container">
 				<div className="modal-button" onClick={() => {available ? pick() : undo()}}><span>{selectionText}</span></div>

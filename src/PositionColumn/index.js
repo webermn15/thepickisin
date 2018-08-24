@@ -14,7 +14,7 @@ class PositionColumn extends Component<{}> {
 		this.state = {
 			refresh: false,
 			nameFilter: '',
-			showUnavailable: true,
+			showUnavailable: false,
 			filteredPlayers: this.props.players
 		}
 	}
@@ -44,7 +44,6 @@ class PositionColumn extends Component<{}> {
 	}
 
 	render() {
-		console.log(this.props.players)
 		const showHide = this.state.showUnavailable ? 'Hide' : 'Show';
 		return(
 			<div className="position-column-outer">
