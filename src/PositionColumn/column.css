@@ -23,7 +23,8 @@
 	border-top: 1px solid rgba(0, 0, 0, 0.3);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 	flex: 1 1 0;
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	white-space: nowrap;
 }
 .tile-outer {
@@ -40,16 +41,35 @@
 	cursor: pointer;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
-.tile-name {
+.tile-inner {
 	height: 99%;
 	width: 99%;
-	padding: 10px 0px;
+	/*padding: 10px 0px;*/
 	text-align: center;
-	font-size: 0.9em;
-	font-weight: 800;
+	font-size: 0.8em;
 	font-family: arial;
 	background-color: rgba(255, 255, 255, 0.7);
 	border: 1px solid black;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+.tile-inner * {
+	/*border: 1px solid black;*/
+}
+.rank-container {
+	font-style: italic;
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.name-container {
+	font-size: 1.2em;
+	font-weight: 800;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
 /* footer */

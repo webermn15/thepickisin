@@ -10,10 +10,21 @@ const PlayerTile = ({toggle, name, position, team, available, id}) => {
 			onClick={() => toggle(id, position)}
 		>
 			<div 
+				className="tile-inner"
 				style={{borderColor: color, color: color}}
-				className="tile-name"
 			>
-				{name}
+				<div
+					className="rank-container"
+				>
+					<div className="player-rank">
+						#{id}
+					</div>
+				</div>
+				<div className="name-container">
+					<div>
+						{name}
+					</div>
+				</div>
 			</div>
 		</div>
 	)

@@ -10,6 +10,7 @@ class App extends Component {
     super()
 
     this.state = {
+      initialized: false,
       refresh: false,
       showModal: false,
       selected: {
@@ -30,12 +31,13 @@ class App extends Component {
 
   componentDidMount() {
     this.initTPII()
-      .then(({sorted}) => this.setState({...sorted}, () => this.setState({refresh: !this.state.refresh})))
+      .then(({sorted}) => this.setState({...sorted, initialized: true}, () => this.setState({refresh: !this.state.refresh})))
       .catch(err => console.log(err));
   }
 
   initTPII = async () => {
     const response = await fetch('https://tpii-api.herokuapp.com/init');
+    // const response = await fetch('http://localhost:4005/init');
     const body = await response.json();
     return body;
   }
@@ -90,9 +92,11 @@ class App extends Component {
 
   render() {
     const playerModal = this.state.showModal ? <Modal> <PlayerModal toggle={this.toggleModal} pick={this.makePick} undo={this.undoPick} {...this.state.selected} /> </Modal>: null;
+    const initializing = !this.state.initialized ? <div style={{fontSize: '4em', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>Initializing...</div> : null;
 
     return (
       <div className="App">
+        {initializing}
         <div className="position-column-container">
           <div className="position-column-vertical-align">
             <PositionColumn refresh={this.state.refresh} toggle={this.selectPlayer} position="Quarterbacks" players={this.state.QB} />
